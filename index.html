@@ -1,0 +1,809 @@
+
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+	<title>Marketingmovement</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--===============================================================================================-->
+	<link rel="icon" type="image/png" href="marketingmovement/images/icons/favicon.ico"/>
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/bootstrap/css/bootstrap.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/animate/animate.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/css-hamburgers/hamburgers.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="vendor/select2/select2.min.css">
+<!--===============================================================================================-->
+	<link rel="stylesheet" type="text/css" href="css/util.css">
+	<link rel="stylesheet" type="text/css" href="css/main.css?1657864667">
+<!--===============================================================================================-->
+<style type="text/css">
+.radio_btn_ad label {
+    margin-left: -59px;
+}
+input[type="radio"] {
+    height: 15px;
+}
+input#accountholder-name {
+    margin-bottom: 10px;
+    width: 50%;
+    float: left;
+}
+.accounts_fieldsad input#acc_email {
+    width: 45%;
+    margin-left: 10px;
+}
+.bank_button {
+    min-width: 193px;
+    height: 50px;
+    border-radius: 25px;
+    background: #ed771d;
+    font-family: Montserrat-Bold;
+    font-size: 15px;
+    line-height: 1.5;
+    color: #fff;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 25px;
+    -webkit-transition: all 0.4s;
+    -o-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+    transition: all 0.4s;
+}
+@media screen and (max-width: 767px) and (min-width: 480px){
+	.radio_btn_ad label {
+    margin-left: -40px;
+}
+}
+@media screen and (max-width: 379px) and (min-width: 320px){
+.radio_btn_ad label {
+    margin-left: -90px !important;
+}
+input[type="radio"] {
+    width: 74% !important;
+}
+}
+div#mandate-acceptance {
+    font-family: Montserrat-Regular, sans-serif; 
+    text-align: justify;
+    font-size: 12px;
+	font-weight: 400;
+    line-height: 27px;
+}
+.StripeElement {
+    margin-left: 20px;
+	margin-bottom: 15px;
+}
+.bank_button i {
+    margin-left: 7px;
+    -webkit-transition: all 0.4s;
+    -o-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+    transition: all 0.4s;
+}
+.accounts_fieldsad #error-message {
+    margin-left: 15px;
+}
+#error-message p {
+    font-size: 20px;
+    font-weight: 600;
+}
+</style>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://js.stripe.com/v3/"></script>
+</head>
+<body>
+	<div class="container">
+		<div class="container-contact">
+			<form class="payment_form" id="stripeleform">
+				<span class="contact-form-title">
+			
+				</span>
+				<div class="wrap-input validate-input" data-validate = "Name is Required" required>
+					<div class="col-md-4" required>
+						<label>Your Name:</label>
+					</div>
+					<div class="col-md-8">
+						<input class="input-field" type="text" name="name" placeholder=" Your Name" id="name" required>
+						<span class="shadow-input"></span>
+					</div>
+				</div>
+				<div class="wrap-input validate-input" data-validate = "Clinic Name is Required">
+					<div class="col-md-4">
+						<label>Your Business name</label>
+					</div>
+					<div class="col-md-8">
+						<input class="input-field" type="text" name="c_name" placeholder="Your Business name" id="c_name" required>
+						<span class="shadow-input"></span>
+					</div>
+				</div>
+				<div class="wrap-input validate-input" data-validate = "Address is Required">
+					<div class="col-md-4">
+						<label>Business Address:</label>
+					</div>
+					<div class="col-md-8">
+						<input class="input-field" type="text" name="address1" placeholder="Business Address 1" id="address1" required>
+						<span class="shadow-input"></span>
+					</div>
+				</div>
+				<div class="wrap-input validate-input" data-validate = "Address is Required">
+					<div class="col-md-4">
+						<label></label>
+					</div>
+					<div class="col-md-8">
+						<input class="input-field" type="text" name="address2" placeholder="Business Address 2" id="address2">
+						<span class="shadow-input"></span>
+					</div>
+				</div>
+				<div class="wrap-input validate-input" data-validate = "Address is Required">
+					<div class="col-md-4">
+						<label></label>
+					</div>
+					<div class="col-md-8">
+						<input class="input-field" type="text" name="address3" placeholder="Business Address 3" id="address3">
+						<span class="shadow-input"></span>
+					</div>
+				</div>
+				
+				
+				<div class="wrap-input validate-input" data-validate = "Suburb Name is Required">
+					<div class="col-md-4">
+						<label>Suburb:</label>
+					</div>
+					<div class="col-md-8">
+						<input class="input-field" type="text" name="s_name" placeholder="Your Suburb" id="s_name" required>
+						<span class="shadow-input"></span>
+					</div>
+				</div>
+				<div class="wrap-input validate-input" data-validate = "State is Required">
+					<div class="col-md-4">
+						<label>State/Province:</label>
+					</div>
+					<div class="col-md-8">
+						<input class="input-field" type="text" name="state" placeholder="Your State" id="state" required>
+						<span class="shadow-input"></span>
+					</div>
+				</div>
+				
+				<div class="wrap-input validate-input" data-validate = "Postcode is Required">
+					<div class="col-md-4">
+						<label>Postcode:</label>
+					</div>
+					<div class="col-md-8">
+						<input class="input-field" type="text" name="p_code" placeholder="Your Postcode " id="p_code" required>
+						<span class="shadow-input"></span>
+					</div>
+				</div>
+				<div class="wrap-input validate-input" data-validate = "Suburb Name is Required">
+					<div class="col-md-4">
+						<label>Country:</label>
+					</div>
+					<div class="col-md-8">
+						<!--<input class="input-field" type="text" name="country" placeholder="Your Country" id="country" required>-->
+						<select name="country" class="input-field"  id="country" style="border: 1px solid #e6e6e6;height: 50px;  border-radius: 54px;padding: 0px 0px 0px 25px;" required>
+                                                        <option value="">Select Country</option>
+                                                        <option value="Afghanistan">Afghanistan</option>
+                                                        <option value="Åland Islands">Åland Islands</option>
+                                                        <option value="Albania">Albania</option>
+                                                        <option value="Algeria">Algeria</option>
+                                                        <option value="Andorra">Andorra</option>
+                                                        <option value="Angola">Angola</option>
+                                                        <option value="Anguilla">Anguilla</option>
+                                                        <option value="Antarctica">Antarctica</option>
+                                                        <option value="Antigua & Barbuda">Antigua & Barbuda</option>
+                                                        <option value="Argentina">Argentina</option>
+                                                        <option value="Armenia">Armenia</option>
+                                                        <option value="Aruba">Aruba</option>
+                                                        <option value="Ascension Island">Ascension Island</option>
+                                                        <option value="Australia">Australia</option>
+                                                        <option value="Austria">Austria</option>
+                                                        <option value="Azerbaijan">Azerbaijan</option>
+                                                        <option value="Bahamas">Bahamas</option>
+                                                        <option value="Bahrain">Bahrain</option>
+                                                        <option value="Bangladesh">Bangladesh</option>
+                                                        <option value="Barbados">Barbados</option>
+                                                        <option value="Belarus">Belarus</option>
+                                                        <option value="Belgium">Belgium</option>
+                                                        <option value="Belize">Belize</option>
+                                                        <option value="Benin">Benin</option>
+                                                        <option value="Bermuda">Bermuda</option>
+                                                        <option value="Bhutan">Bhutan</option>
+                                                        <option value="Bolivia">Bolivia</option>
+                                                        <option value="Bosnia & HerzegovinaBA">Bosnia & Herzegovina</option>
+                                                        <option value="Botswana">Botswana</option>
+                                                        <option value="Bouvet Island">Bouvet Island</option>
+                                                        <option value="Brazil">Brazil</option>
+                                                        <option value="British Indian Ocean TerritoryIO">British Indian Ocean Territory</option>
+                                                        <option value="British Virgin Islands">British Virgin Islands</option>
+                                                        <option value="Brunei">Brunei</option>
+                                                        <option value="Bulgaria">Bulgaria</option>
+                                                        <option value="Burkina Faso">Burkina Faso</option>
+                                                        <option value="Burundi">Burundi</option>
+                                                        <option value="Cambodia">Cambodia</option>
+                                                        <option value="Cameroon">Cameroon</option>
+                                                        <option value="Canada">Canada</option>
+                                                        <option value="Cape Verde">Cape Verde</option>
+                                                        <option value="Caribbean NetherlandsBQ">Caribbean Netherlands</option>
+                                                        <option value="Cayman Islands">Cayman Islands</option>
+                                                        <option value="Central African Republic">Central African Republic</option>
+                                                        <option value="Chad">Chad</option>
+                                                        <option value="Chile">Chile</option>
+                                                        <option value="China">China</option>
+                                                        <option value="Colombia">Colombia</option>
+                                                        <option value="Comoros">Comoros</option>
+                                                        <option value="Congo-Brazzaville">Congo - Brazzaville</option>
+                                                        <option value="Congo-Kinshasa">Congo - Kinshasa</option>
+                                                        <option value="Cook Islands">Cook Islands</option>
+                                                        <option value="Costa Rica">Costa Rica</option>
+                                                        <option value="Côte d’Ivoire">Côte d’Ivoire</option>
+                                                        <option value="Croatia">Croatia</option>
+                                                        <option value="Curaçao">Curaçao</option>
+                                                        <option value="Cyprus">Cyprus</option>
+                                                        <option value="Czechia">Czechia</option>
+                                                        <option value="Denmark">Denmark</option>
+                                                        <option value="Djibouti">Djibouti</option>
+                                                        <option value="Dominica">Dominica</option>
+                                                        <option value="Dominican Republic">Dominican Republic</option>
+                                                        <option value="Ecuador">Ecuador</option>
+                                                        <option value="Egypt">Egypt</option>
+                                                        <option value="El Salvador">El Salvador</option>
+                                                        <option value="Equatorial Guinea">Equatorial Guinea</option>
+                                                        <option value="Eritrea">Eritrea</option>
+                                                        <option value="Estonia">Estonia</option>
+                                                        <option value="Eswatini">Eswatini</option>
+                                                        <option value="Ethiopia">Ethiopia</option>
+                                                        <option value="Falkland Islands">Falkland Islands</option>
+                                                        <option value="Faroe IslandsFO">Faroe Islands</option>
+                                                        <option value="Fiji">Fiji</option>
+                                                        <option value="Finland">Finland</option>
+                                                        <option value="France">France</option>
+                                                        <option value="French Guiana">French Guiana</option>
+                                                        <option value="French Polynesia">French Polynesia</option>
+                                                        <option value="French Southern Territories">French Southern Territories</option>
+                                                        <option value="Gabon">Gabon</option>
+                                                        <option value="Gambia">Gambia</option>
+                                                        <option value="Georgia">Georgia</option>
+                                                        <option value="Germany">Germany</option>
+                                                        <option value="Ghana">Ghana</option>
+                                                        <option value="Gibraltar">Gibraltar</option>
+                                                        <option value="Greece">Greece</option>
+                                                        <option value="Greenland">Greenland</option>
+                                                        <option value="Grenada">Grenada</option>
+                                                        <option value="Guadeloupe">Guadeloupe</option>
+                                                        <option value="Guam">Guam</option>
+                                                        <option value="Guatemala">Guatemala</option>
+                                                        <option value="Guernsey">Guernsey</option>
+                                                        <option value="Guinea">Guinea</option>
+                                                        <option value="Guinea-Bissau">Guinea-Bissau</option>
+                                                        <option value="Guyana">Guyana</option>
+                                                        <option value="Haiti">Haiti</option>
+                                                        <option value="Honduras">Honduras</option>
+                                                        <option value="Hong Kong SAR China">Hong Kong SAR China</option>
+                                                        <option value="Hungary">Hungary</option>
+                                                        <option value="Iceland">Iceland</option>
+                                                        <option value="India">India</option>
+                                                        <option value="Indonesia">Indonesia</option>
+                                                        <option value="Iraq">Iraq</option>
+                                                        <option value="Ireland">Ireland</option>
+                                                        <option value="Isle of Man">Isle of Man</option>
+                                                        <option value="Israel">Israel</option>
+                                                        <option value="Italy">Italy</option>
+                                                        <option value="Jamaica">Jamaica</option>
+                                                        <option value="Japan">Japan</option>
+                                                        <option value="Jersey">Jersey</option>
+                                                        <option value="Jordan">Jordan</option>
+                                                        <option value="Kazakhstan">Kazakhstan</option>
+                                                        <option value="Kenya">Kenya</option>
+                                                        <option value="Kiribati">Kiribati</option>
+                                                        <option value="Kosovo">Kosovo</option>
+                                                        <option value="Kuwait">Kuwait</option>
+                                                        <option value="Kyrgyzstan">Kyrgyzstan</option>
+                                                        <option value="Laos">Laos</option>
+                                                        <option value="Latvia">Latvia</option>
+                                                        <option value="Lebanon">Lebanon</option>
+                                                        <option value="Lesotho">Lesotho</option>
+                                                        <option value="Liberia">Liberia</option>
+                                                        <option value="Libya">Libya</option>
+                                                        <option value="Liechtenstein">Liechtenstein</option>
+                                                        <option value="Lithuania">Lithuania</option>
+                                                        <option value="Luxembourg">Luxembourg</option>
+                                                        <option value="Macao SAR China">Macao SAR China</option>
+                                                        <option value="Madagascar">Madagascar</option>
+                                                        <option value="Malawi">Malawi</option>
+                                                        <option value="Malaysia">Malaysia</option>
+                                                        <option value="Maldives">Maldives</option>
+                                                        <option value="Mali">Mali</option>
+                                                        <option value="Malta">Malta</option>
+                                                        <option value="Martinique">Martinique</option>
+                                                        <option value="Mauritania">Mauritania</option>
+                                                        <option value="Mauritius">Mauritius</option>
+                                                        <option value="Mayotte">Mayotte</option>
+                                                        <option value="Mexico">Mexico</option>
+                                                        <option value="Moldova">Moldova</option>
+                                                        <option value="Monaco">Monaco</option>
+                                                        <option value="Mongolia">Mongolia</option>
+                                                        <option value="Montenegro">Montenegro</option>
+                                                        <option value="Montserrat">Montserrat</option>
+                                                        <option value="Morocco">Morocco</option>
+                                                        <option value="Mozambique">Mozambique</option>
+                                                        <option value="Myanmar (Burma)">Myanmar (Burma)</option>
+                                                        <option value="Namibia">Namibia</option>
+                                                        <option value="Nauru">Nauru</option>
+                                                        <option value="Nepal">Nepal</option>
+                                                        <option value="Netherlands">Netherlands</option>
+                                                        <option value="New Caledonia">New Caledonia</option>
+                                                        <option value="New Zealand">New Zealand</option>
+                                                        <option value="Nicaragua">Nicaragua</option>
+                                                        <option value="Niger">Niger</option>
+                                                        <option value="Nigeria">Nigeria</option>
+                                                        <option value="Niue">Niue</option>
+                                                        <option value="North Macedonia">North Macedonia</option>
+                                                        <option value="Norway">Norway</option>
+                                                        <option value="Oman">Oman</option>
+                                                        <option value="Pakistan">Pakistan</option>
+                                                        <option value="Palestinian Territories">Palestinian Territories</option>
+                                                        <option value="Panama">Panama</option>
+                                                        <option value="Papua New Guinea">Papua New Guinea</option>
+                                                        <option value="Paraguay">Paraguay</option>
+                                                        <option value="Peru">Peru</option>
+                                                        <option value="Philippines">Philippines</option>
+                                                        <option value="Pitcairn Islands">Pitcairn Islands</option>
+                                                        <option value="Poland">Poland</option>
+                                                        <option value="Portugal">Portugal</option>
+                                                        <option value="Puerto Rico">Puerto Rico</option>
+                                                        <option value="Qatar">Qatar</option>
+                                                        <option value="Republic of Korea">Republic of Korea</option>
+                                                        <option value="Réunion">Réunion</option>
+                                                        <option value="Romania">Romania</option>
+                                                        <option value="Russia">Russia</option>
+                                                        <option value="Rwanda">Rwanda</option>
+                                                        <option value="Samoa">Samoa</option>
+                                                        <option value="San Marino">San Marino</option>
+                                                        <option value="São Tomé & Príncipe">São Tomé & Príncipe</option>
+                                                        <option value="Saudi Arabia">Saudi Arabia</option>
+                                                        <option value="Senegal">Senegal</option>
+                                                        <option value="Serbia">Serbia</option>
+                                                        <option value="Seychelles">Seychelles</option>
+                                                        <option value="Sierra Leone">Sierra Leone</option>
+                                                        <option value="Singapore">Singapore</option>
+                                                        <option value="Sint Maarten">Sint Maarten</option>
+                                                        <option value="Slovakia">Slovakia</option>
+                                                        <option value="Slovenia">Slovenia</option>
+                                                        <option value="Solomon Islands">Solomon Islands</option>
+                                                        <option value="Somalia">Somalia</option>
+                                                        <option value="South Africa">South Africa</option>
+                                                        <option value="South Georgia & South Sandwich Islands">South Georgia & South Sandwich Islands</option>
+                                                        <option value="South Sudan">South Sudan</option>
+                                                        <option value="Spain">Spain</option>
+                                                        <option value="Sri Lanka">Sri Lanka</option>
+                                                        <option value="St. Barthélemy">St. Barthélemy</option>
+                                                        <option value="St. Helena">St. Helena</option>
+                                                        <option value="St. Kitts & Nevis">St. Kitts & Nevis</option>
+                                                        <option value="St. Lucia">St. Lucia</option>
+                                                        <option value="St. Martin">St. Martin</option>
+                                                        <option value="St. Pierre & Miquelon">St. Pierre & Miquelon</option>
+                                                        <option value="St. Vincent & Grenadines">St. Vincent & Grenadines</option>
+                                                        <option value="Suriname">Suriname</option>
+                                                        <option value="Svalbard & Jan Mayen">Svalbard & Jan Mayen</option>
+                                                        <option value="Sweden">Sweden</option>
+                                                        <option value="Switzerland">Switzerland</option>
+                                                        <option value="Taiwan">Taiwan</option>
+                                                        <option value="Tajikistan">Tajikistan</option>
+                                                        <option value="Tanzania">Tanzania</option>
+                                                        <option value="Thailand">Thailand</option>
+                                                        <option value="Timor-Leste">Timor-Leste</option>
+                                                        <option value="Togo">Togo</option>
+                                                        <option value="Tokelau">Tokelau</option>
+                                                        <option value="Tonga">Tonga</option>
+                                                        <option value="Trinidad & Tobago">Trinidad & Tobago</option>
+                                                        <option value="Tristan da Cunha">Tristan da Cunha</option>
+                                                        <option value="Tunisia">Tunisia</option>
+                                                        <option value="Turkey">Turkey</option>
+                                                        <option value="Turkmenistan">Turkmenistan</option>
+                                                        <option value="Turks & Caicos Islands">Turks & Caicos Islands</option>
+                                                        <option value="Tuvalu">Tuvalu</option>
+                                                        <option value="Uganda">Uganda</option>
+                                                        <option value="Ukraine">Ukraine</option>
+                                                        <option value="United Arab Emirates">United Arab Emirates</option>
+                                                        <option value="United Kingdom">United Kingdom</option>
+                                                        <option value="United States">United States</option>
+                                                        <option value="Uruguay">Uruguay</option>
+                                                        <option value="Uzbekistan">Uzbekistan</option>
+                                                        <option value="Vanuatu">Vanuatu</option>
+                                                        <option value="Vatican city">Vatican City</option>
+                                                        <option value="Venezuela">Venezuela</option>
+                                                        <option value="Vietnam">Vietnam</option>
+                                                        <option value="Wallis Futuna">Wallis Futuna</option>
+                                                        <option value="Western Sahara">Western Sahara</option>
+                                                        <option value="Yemen">Yemen</option>
+                                                        <option value="Zambia">Zambia</option>
+                                                        <option value="Zimbabwe">Zimbabwe</option>
+                                                        </select>
+						<span class="shadow-input"></span>
+					</div>
+				</div>
+                <div class="wrap-input validate-input" data-validate = "Valid Email is Required: ex@abc.xyz">
+                	<div class="col-md-4">
+                		<label>Email:</label>
+                	</div>
+					<div class="col-md-8">
+						<input class="input-field" type="text" name="email" placeholder="Email" id="email" required>
+						<span class="shadow-input"></span>
+					</div>
+				</div>
+				<div class="wrap-input validate-input" data-validate = "Phone Number is Required">
+					<div class="col-md-4">
+						<label>Phone Number:</label>
+					</div>
+					<div class="col-md-8">
+						<input class="input-field" type="text" name="phno" placeholder="Your Phone Number" id="phno" required>
+						<span class="shadow-input"></span>
+					</div>
+				</div>
+				
+
+				<div class="wrap-input validate-input" data-validate="Select Payment Method">
+					<div class="col-md-4">
+						<label>Payment Details</label>
+						</div>
+					<div class="col-md-8 radio_btn_ad">
+						<input name="adpayment_method1" type="radio"  class="ad_radio" id="cardad" value="ad_card" checked="checked">
+						<label for="cardad">Card</label>
+						<input name="adpayment_method1" type="radio"  class="ad_radio" id="accountad" value="ad_account">
+						<label for="accountad">Bank Account</label>
+						<span class="shadow-input"></span>
+					</div>
+				</div>
+
+
+				<div class="wrap-input validate-input card_fieldsad" data-validate = "Payment detail required">
+					<div class="col-md-4">
+						<label>Credit Card:</label>
+					</div>
+					<div class="col-md-8">
+						<div class="form-row card_data">
+							<div id="card-element" name="card-element">
+							<!-- A Stripe Element will be inserted here. -->
+							</div>
+
+							
+						</div>
+						<span class="shadow-input"></span>
+                        <div id="card-errors" role="alert"></div>
+					</div>
+					
+				</div>
+				<div class="wrap-input validate-input card_fieldsad" data-validate = "Payment detail required">
+					<div class="col-md-4"></div>
+					<div class="col-md-8">
+						Card Accepted:
+						<img src="https://marketingmovement.net/marketingmovement/visa.jpg">
+						<img src="https://marketingmovement.net/marketingmovement/mastercard.jpg">
+						<img src="https://marketingmovement.net/marketingmovement/Maestro_logo.png">
+						<img src="https://marketingmovement.net/marketingmovement/amex.png">
+					</div>
+				</div>
+				<!-- New added for bank account details start -->
+				<div class="wrap-input validate-input accounts_fieldsad" data-validate = "Account detail required">
+					<div class="col-md-4">
+						<label>Bank Account:</label>
+					</div>
+					<div class="col-md-8">
+						<div class="form-row account_data">
+							<div id="au-bank-account-element">
+						      <!-- A Stripe Element will be inserted here. -->
+						    </div>
+						</div>
+						<div id="bank-name"></div>
+						
+						<!-- Display mandate acceptance text. -->
+						  <div class="col" id="mandate-acceptance">
+						    By providing your bank account details and confirming this payment,
+							you agree to this Direct Debit Request and the
+							<a href="https://stripe.com/au-becs-dd-service-agreement/legal">Direct Debit Request service agreement</a>,
+							and authorise Stripe Payments Australia Pty Ltd ACN 160 180 343
+							Direct Debit User ID number 507156 (“Stripe”) to debit your account
+							through the Bulk Electronic Clearing System (BECS) on behalf of
+							Marketing Movement UK (the "Merchant") for any amounts separately
+							communicated to you by the Merchant. You certify that you are either
+							an account holder or an authorised signatory on the account listed above.
+						  </div>
+						<div id="error-message" role="alert"></div>
+					</div>
+				</div>
+				<!-- New added for bank account details end -->
+
+				<input type="hidden" name="pid" id="pid" value="">
+				<!-- Used to display form errors. -->
+				
+
+								<!-- <div class="row">
+								  <div class="column" id="visa">
+								    <img src="visa.jpg">
+								  </div>
+								  <div class="column" id="master">
+								    <img src="mastercard.jpg">
+								  </div>
+								  <div class="column" id="mestro">
+								    <img src="Maestro_logo.png">
+								  </div>
+								   <div class="column">
+								    <img src="amex.png">
+								  </div>
+								</div> -->
+					      
+				
+				<div class="container-contact-form-btn" id="submitbtn">
+					<!-- button for card payment -->
+					<button class="contact-form-btn" >
+						<span id="submit_btn">Submit<i class="fa fa-long-arrow-right" aria-hidden="true"></i></span>
+					</button>
+					<button id="submit_btn" class="bank_button" data-secret="">Submit<i class="fa fa-long-arrow-right" aria-hidden="true"></i></button>
+					
+					
+				</div>
+			</form>
+		</div>
+	</div>
+
+	
+	<script type="text/javascript">
+		// var card_input = document.getElementById('card-element').id;
+		// var bank_input = document.getElementById('au-bank-account-element').id;
+		
+		// Create a Stripe client.
+		var stripe = Stripe('pk_live_rzYTQuPcZcIhAFzG61GL0Q7800x4nVb6rt');
+
+		//var stripe = Stripe('pk_test_51HOs6vBozs40G5ABc6NHgk1UBNwGGiL7MDblfW0kByolyTyqR2gLrjJ65JXguiovb3onm4nZYrBdGmXsJXUTIQBt00pqkon8Mx');
+
+		// Create an instance of Elements.
+		var elements = stripe.elements();
+
+		
+
+		// if (card_input === 'card-element') {
+			// console.log("called card function");
+			// Custom styling can be passed to options when creating an Element.
+			// (Note that this demo uses a wider set of styles than the guide below.)
+			var style = {
+				base: {
+					color: '#32325d',
+					fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
+					fontSmoothing: 'antialiased',
+					fontSize: '16px',
+					'::placeholder': {
+					color: '#aab7c4'
+					}
+				},
+				invalid: {
+					color: '#fa755a',
+					iconColor: '#fa755a'
+				}
+			};
+				// Create an instance of the card Element.
+			var card = elements.create('card', {hidePostalCode: true,style: style});
+
+			
+
+			// Add an instance of the card Element into the `card-element` <div>.
+			card.mount('#card-element');
+			
+
+			// Handle real-time validation errors from the card Element.
+			card.addEventListener('change', function(event) {
+				var displayError = document.getElementById('card-errors');
+				if (event.error) {
+					displayError.textContent = event.error.message;
+				} else {
+					displayError.textContent = '';
+				}
+			});
+			$.getJSON( 'setup_intent.php',{'createintent':'true'},function( data ) {
+				console.log(data);
+				clientSecret = data.client_secret;
+				paymentIntent= data.id;
+			});
+			var form = document.getElementById('stripeleform');
+			form.addEventListener('submit', function(event) {
+				event.preventDefault();
+				$('#submit_btn').html('Processing');
+				$('#submit_btn').prop('disable',true);
+				// $('#card-element').clear();
+				var email=jQuery('#email').val();
+				stripe.handleCardSetup(clientSecret, card).then(function(result) {
+				if(result.error){
+							$('#card-errors').html('<p style=\"color:red;\">'+result.error.message+'</p>');
+							$('#submit_btn').html('Submit<i class="fa fa-long-arrow-right" aria-hidden="true"></i>');
+							$('#submit_btn').prop('disable',false);
+					}else{
+							var pid = result.setupIntent.payment_method;
+							$('#pid').val(pid);
+							console.log(result);
+							// var formdata = $('')
+							$.ajax({
+								url:'setup_intent.php',
+								data:$('#stripeleform').serialize(),
+								type:'get',
+								success:function(data){
+									data = data.trim();
+									if(data=='done'){								
+										$('#stripeleform').trigger('reset');
+										$('#card-errors').html('<p style=\"color:green;\">Thank you. Your details have been saved. We’ll be in touch to confirm your subscription/payment soon.!</p><p></p>');
+										var delayInMilliseconds = 5000; //1 second
+
+											setTimeout(function() {
+											window.location.reload();
+											}, delayInMilliseconds);		
+
+									}else{
+										$('#card-errors').html('<p style=\"color:red;\">'+data+'</p>');
+									}	
+
+									$('#submit_btn').html('Submit<i class="fa fa-long-arrow-right" aria-hidden="true"></i>');
+									$('#submit_btn').prop('disable',false);							
+								}
+							});
+
+					}
+				});
+			});
+		// } else if(bank_input === 'au-bank-account-element') {
+			
+			// console.log("called bank function")
+			// Custom styling can be passed to options when creating an Element
+			var style = {
+			  base: {
+			    color: '#32325d',
+			    fontSize: '16px',
+			    '::placeholder': {
+			      color: '#aab7c4'
+			    },
+			    ':-webkit-autofill': {
+			      color: '#32325d',
+			    },
+			  },
+			  invalid: {
+			    color: '#fa755a',
+			    iconColor: '#fa755a',
+			    ':-webkit-autofill': {
+			      color: '#fa755a',
+			    },
+			  }
+			};
+
+			var options = {
+			  style: style,
+			  disabled: false,
+			  hideIcon: false,
+			  iconStyle: "default", // or "solid"
+			}
+			// Create an instance of the auBankAccount Element.
+			var auBankAccount = elements.create('auBankAccount', options);
+			console.log("auBankAccount",auBankAccount);
+
+			// Add an instance of the auBankAccount Element into
+			// the `au-bank-account-element` <div>.
+			auBankAccount.mount('#au-bank-account-element');
+
+			// Handle real-time validation errors from the card Element.
+			auBankAccount.addEventListener('change', function(event) {
+				var displayError = document.getElementById('error-message');
+				if (event.error) {
+					displayError.textContent = event.error.message;
+				} else {
+					displayError.textContent = '';
+				}
+			});
+			$.getJSON( 'setup_intent1.php',{'createintent':'true'},function( data ) {
+				console.log(data);
+				clientSecret = data.client_secret;
+				paymentIntent= data.id;
+				$(".bank_button").attr("data-secret", clientSecret);
+			});
+			var form = document.getElementById('stripeleform');
+			var acholdername = $("#name").val();
+			var email = $('#email').val();
+			form.addEventListener('submit', function(event) {
+				event.preventDefault();
+				$('#submit_btn').html('Processing');
+				$('#submit_btn').prop('disable',true);
+                var acholdername = $("#name").val();
+				var email = $('#email').val();
+				//console.log(acholdername);
+				//console.log(email.value);
+				// $('#card-element').clear();
+				
+
+				stripe.confirmAuBecsDebitSetup(
+				    clientSecret,
+				    {
+				      payment_method: {
+				        au_becs_debit: auBankAccount,
+				        billing_details: {
+				          name: acholdername,
+				          email: email
+				        }
+				      }
+				    }
+				  ).then(function(result) {
+				// stripe.confirmAuBecsDebitSetup(clientSecret, auBankAccount).then(function(result){
+				if(result.error){
+							$('#error-message').html('<p style=\"color:red;\">'+result.error.message+'</p>');
+							$('#submit_btn').html('Submit<i class="fa fa-long-arrow-right" aria-hidden="true"></i>');
+							$('#submit_btn').prop('disable',false);
+					}else{
+							var pid = result.setupIntent.payment_method;
+							$('#pid').val(pid);
+							console.log(result);
+							// var formdata = $('')
+							$.ajax({
+								url:'setup_intent1.php',
+								data:$('#stripeleform').serialize(),
+								type:'get',
+								success:function(data){
+									data = data.trim();
+									if(data=='done'){								
+										$('#stripeleform').trigger('reset');
+										$('#error-message').html('<p style=\"color:green;\">Thank you. Your details have been saved. We’ll be in touch to confirm your subscription/payment soon.!</p><p></p>');
+										var delayInMilliseconds = 5000; //1 second
+
+											setTimeout(function() {
+											window.location.reload();
+											}, delayInMilliseconds);		
+
+									}else{
+										$('#error-message').html('<p style=\"color:red;\">'+data+'</p>');
+									}	
+
+									$('#submit_btn').html('Submit<i class="fa fa-long-arrow-right" aria-hidden="true"></i>');
+									$('#submit_btn').prop('disable',false);							
+								}
+							});
+
+					}
+				});
+			});
+</script>
+
+
+
+<script type="text/javascript">
+jQuery(document).ready(function(){
+	jQuery(".card_fieldsad").show();
+	jQuery(".accounts_fieldsad").hide();
+	jQuery("#au-bank-account-element iframe").attr("style", "border: none !important; margin: 0px !important; padding: 0px !important; width: auto !important; min-width: 100% !important; overflow: hidden !important; display: block !important; user-select: none !important; height: 19.2px;");
+	jQuery(".contact-form-btn").show();
+	jQuery(".bank_button").hide();
+});
+
+jQuery(".radio_btn_ad input").click(function(){
+var paymethod = jQuery(this).val();
+if(paymethod == 'ad_card'){
+	jQuery(".card_fieldsad").show();
+    auBankAccount.clear();
+	jQuery(".accounts_fieldsad").hide();
+	jQuery(".bank_button").hide();
+	jQuery(".contact-form-btn").show();
+}else if(paymethod == 'ad_account')
+{
+	jQuery(".card_fieldsad").hide();
+	jQuery(".accounts_fieldsad").show();
+    card.clear();
+	jQuery(".contact-form-btn").hide();
+	jQuery(".bank_button").show();
+}
+});
+</script>
+
+
+</body>
+</html>
